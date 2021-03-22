@@ -1,0 +1,56 @@
+
+public abstract class ContaBancaria {
+
+	public static int numeroDaCOnta;
+	
+	protected String nome;
+	protected int numeroConta;
+	protected float saldo;
+	
+	public ContaBancaria(String nome, int numeroConta, float saldo) {
+		
+		this.nome = nome;
+		this.numeroConta = numeroConta;
+		this.saldo = saldo;
+		
+	}
+	
+	public String getNome() {
+		return nome;
+	}
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+	public int getNumeroConta() {
+		return numeroConta;
+	}
+	public void setNumeroConta(int numeroConta) {
+		this.numeroConta = numeroConta;
+	}
+	public float getSaldo() {
+		return saldo;
+	}
+	public void setSaldo(float saldo) {
+		this.saldo = saldo;
+	}
+	
+	public void deposita(float valor) {
+		
+		saldo += valor;
+		
+	}
+	
+	public float saque(float valor) throws IllegalArgumentException {
+		
+		if(saldo >= valor) {
+			saldo -= valor;
+			return valor;
+		} else {
+			
+			throw new IllegalArgumentException("Saldo Insuficiente");
+			
+		}
+		
+	}
+	
+}

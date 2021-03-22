@@ -1,0 +1,77 @@
+
+public class Agenda {
+
+	private Pessoa[] pessoas;
+	
+	public static void main(String[] args) {
+		
+		
+
+	}
+	
+	public void adicionaPessoa(Pessoa pessoa) {
+		
+		// Recria a lista de pessoas deixando um novo espaco.
+		Pessoa[] newPessoas = new Pessoa[pessoas.length + 1];
+		for(int i = 0; i < pessoas.length; i++)
+			newPessoas[i] = pessoas[i];
+		// Adiciona a nova pessoa.
+		newPessoas[pessoas.length] = pessoa;
+		
+	}
+	
+	public void removePessoa(String nome) {
+		
+		removePorIndice(buscaIndice(nome));
+		
+	}
+	
+	public void removePessoa(int cpf_cnpj) {
+	
+		removePorIndice(buscaIndice(cpf_cnpj));
+		
+	}
+	
+	private void removePorIndice(int pos) {
+		
+	}
+	
+	private int buscaIndice(String nome) {
+		
+		for(int i = 0; i < pessoas.length; i++)
+			if(pessoas[i].nome.equals(nome))
+				return i;
+		
+		return -1;
+		
+	}
+	
+	private int buscaIndice(int cpf_cnpj) {
+		
+		for(int i = 0; i < pessoas.length; i++)
+			if(pessoas[i] instanceof PessoaFisica)
+				PessoaFisisca pFisica = (PessoaFisica) pessoas[i];		
+		return -1;
+		
+	}
+	
+	public void buscaPessoa(String nome) {
+		
+	}
+	
+	public void buscaPessoa(int cpf_cnpj) {
+		
+	}
+	
+	public void ordenaAgenda() {
+		
+	}
+	
+	@Override
+	public String toString() {
+		
+		return "";
+		
+	}
+
+}

@@ -1,0 +1,513 @@
+1
+Coleções
+POO
+Prof. Marcio Delamaro
+2
+Definição
+● Interface Collection<E>
+ E - the type of elements in this collection
+● The root interface in the collection hierarchy. A
+collection represents a group of objects, known
+as its elements.
+3
+Definição
+● Interface Collection<E>
+ E - the type of elements in this collection
+● The root interface in the collection hierarchy. A
+collection represents a group of objects, known
+as its elements.
+● Some collections allow duplicate elements and
+others do not. Some are ordered and others
+unordered.
+4
+Definição
+● Interface Collection<E>
+ E - the type of elements in this collection
+● The root interface in the collection hierarchy. A collection
+represents a group of objects, known as its elements.
+● Some collections allow duplicate elements and others
+do not. Some are ordered and others unordered.
+● The JDK does not provide any direct implementations of
+this interface: it provides implementations of more
+specific subinterfaces like Set and List.
+5
+Definição
+● Interface Collection<E>
+ E - the type of elements in this collection
+● The root interface in the collection hierarchy. A collection
+represents a group of objects, known as its elements.
+● Some collections allow duplicate elements and others do not.
+Some are ordered and others unordered.
+● The JDK does not provide any direct implementations of this
+interface: it provides implementations of more specific
+subinterfaces like Set and List.
+● This interface is typically used to pass collections around and
+manipulate them where maximum generality is desired. 
+6
+Operações
+● https://docs.oracle.com/javase/8/docs/api/java/
+util/Collection.html
+● boolean add(E e)
+Ensures that this collection contains the
+specified element
+● boolean remove(Object o)
+Removes a single instance of the specified
+element from this collection, if it is present
+7
+Operações
+● boolean addAll(Collection<? extends E> c)
+Adds all of the elements in the specified collection to
+this collection
+● boolean removeAll(Collection<?> c)
+Removes all of this collection's elements that are
+also contained in the specified collection
+● boolean contains(Object o)
+● boolean isEmpty()
+● int size()
+8
+Mais simples
+● public class Vector<E> extends AbstractList<E>
+implements List<E>
+9
+Mais simples
+● public class Vector<E> extends AbstractList<E>
+implements List<E>
+● The Vector class implements a growable array
+of objects. Like an array, it contains
+components that can be accessed using an
+integer index. However, the size of a Vector can
+grow or shrink as needed to accommodate
+adding and removing items after the Vector has
+been created. 
+10
+Array x Vector
+● ContaBancaria contas[] = new ContaBancaria[100];
+int nContas = 0;
+● Vector<ContaBancaria> contas = 
+                new Vector<ContaBancaria>();
+11
+Array x Vector
+● ContaBancaria contas[] = new ContaBancaria[100];
+int nContas = 0;
+● Vector<ContaBancaria> contas = 
+                 new Vector<ContaBancaria>();
+● É preciso estabelecer o tipo dos elementos que serão inseridos
+● O tipo Vector<> é na verdade um tipo genérico em Java
+● Que precisa ser parametrizado para que se crie um tipo real
+– Vector<E> 
+12
+Array x Vector
+● ContaBancaria contas[] = new ContaBancaria[100];
+int nContas = 0;
+● Vector<ContaBancaria> contas = 
+               new Vector<ContaBancaria>();
+● É preciso estabelecer o tipo dos elementos que serão inseridos
+● O tipo Vector<> é na verdade um tipo genérico em Java
+● Que precisa ser parametrizado para que se crie um tipo real
+– Vector<E>
+● Número de contas é dado por contas.size()
+13
+O que mais muda?
+● Adicionar uma conta na lista
+● Como era
+private void add(ContaBancaria cb) {
+contas[nContas++] = cb;
+}
+14
+O que mais muda?
+● Adicionar uma conta na lista
+● Como era
+private void add(ContaBancaria cb) {
+    contas[nContas++] = cb;
+}
+● Como fica
+private void add(ContaBancaria cb) {
+    contas.add(cb);
+}
+15
+O que mais muda?
+● Procurar uma conta
+● Como era
+private ContaBancaria procura(int conta) {
+for (ContaBancaria ctb: contas ) {
+if ( ctb == null ) break;
+if (conta == ctb.getNumConta())
+return ctb;
+}
+return null;
+}
+16
+O que mais muda?
+● Procurar uma conta
+● Como fica
+17
+O que mais muda?
+● Procurar uma conta
+● Como fica
+private ContaBancaria procura(int conta) {
+for (ContaBancaria ctb: contas ) {
+if ( ctb == null ) break;
+if (conta == ctb.getNumConta())
+return ctb;
+}
+return null;
+}
+18
+O que mais muda?
+● Procurar uma conta
+● Como fica
+private ContaBancaria procura(int conta) {
+for (ContaBancaria ctb: contas ) {
+if (conta == ctb.getNumConta())
+return ctb;
+}
+return null;
+}
+19
+Iteradores
+● Vector, assim como outras coleções também
+implementam a interface Iterable
+● Por isso, comando for pode ser usado
+● Podemos ter uma forma mais explícita de
+iteração
+● Usando objeto Iterator
+20
+Exemplo Iteradores
+private void atualizaPoupança(double tx) {
+Iterator<ContaBancaria> it = contas.iterator();
+while  (it.hasNext())
+{
+   ContaBancaria ctb = it.next();
+   ctb.atualiza(tx);
+}
+}
+21
+Exemplo Iteradores
+private void atualizaPoupança(double tx) {
+Iterator<ContaBancaria> it = contas.iterator();
+while  (it.hasNext())
+{
+   ContaBancaria ctb = it.next();
+   ctb.atualiza(tx);
+}
+}
+Vector retorna um iterador
+22
+Exemplo Iteradores
+private void atualizaPoupança(double tx) {
+Iterator<ContaBancaria> it = contas.iterator();
+while  (it.hasNext())
+{
+   ContaBancaria ctb = it.next();
+   ctb.atualiza(tx);
+}
+}
+Vector retorna um iterador
+Verifica se ainda existem elementos a tratar
+23
+Exemplo Iteradores
+private void atualizaPoupança(double tx) {
+Iterator<ContaBancaria> it = contas.iterator();
+while  (it.hasNext())
+{
+   ContaBancaria ctb = it.next();
+   ctb.atualiza(tx);
+}
+}
+Vector retorna um iterador
+Verifica se ainda existem elementos a tratar
+Obtém o próximo elemento
+24
+Conjuntos
+● public interface Set<E> extends Collection<E>
+● Uma interface pode ter uma superinterface
+25
+Conjuntos
+● public interface Set<E> extends Collection<E>
+● Uma interface pode ter uma superinterface
+● A collection that contains no duplicate elements.
+● More formally, sets contain no pair of elements
+e1 and e2 such that e1.equals(e2), and at most
+one null element.
+● As implied by its name, this interface models
+the mathematical set abstraction. 
+26
+Operações conjuntos
+● boolean addAll(Collection<? extends E> c)
+Adds all of the elements in the specified collection
+to this set if they're not already present. (União)
+● boolean retainAll(Collection<?> c)
+Retains only the elements in this set that are
+contained in the specified collection. (Intersecção)
+● boolean removeAll(Collection<?> c)
+Removes from this set all of its elements that are
+contained in the specified collection. (Diferença)
+27
+Implementações
+● Set é uma interface que pode ser
+implementada de diversas maneiras
+● EnumSet, HashSet, LinkedHashSet, TreeSet
+28
+Maps
+● Interface Map<K,V>
+ Type Parameters:
+ K - the type of keys maintained by this map
+ V - the type of mapped values
+29
+Maps
+● Interface Map<K,V>
+ Type Parameters:
+ K - the type of keys maintained by this map
+ V - the type of mapped values
+● An object that maps keys to values. A map
+cannot contain duplicate keys; each key can
+map to at most one value. 
+30
+Maps
+● Interface Map<K,V>
+ Type Parameters:
+ K - the type of keys maintained by this map
+ V - the type of mapped values
+● An object that maps keys to values. A map cannot
+contain duplicate keys; each key can map to at most
+one value.
+● The Map interface provides three collection views,
+which allow a map's contents to be viewed as a set of
+keys, collection of values, or set of key-value mappings.
+31
+Pra que serve
+● Um Map permite que se crie uma coleção com
+acesso direto a seus membros
+● Acesso baseado numa chave
+● NUSP → dados do aluno
+● CPF → dados do cidadão
+● ISBN → livro
+32
+Quer q desenha?
+A
+B
+C
+D
+E
+Chaves
+Objeto A
+Objeto B
+Objeto C
+Objeto D
+Objeto E
+Valores
+33
+Sistema bancário
+● Vamos mais uma vez alterar nossa classe
+gerenciadora: Contas
+● Em vez de usa um vetor, vamos usar um
+HashMap
+● Chave é o número da conta
+● Assim, não precisamos procurar uma conta
+para fazer saques ou depósitos
+34
+Alterações em Contas
+● Mudar a declaração da estruTura usada
+● private Vector<ContaBancaria> contas = new 
+Vector<ContaBancaria>();
+private HashMap<Integer,ContaBancaria> contas = 
+new HashMap<Integer,ContaBancaria>();
+● Os elementos dos Maps e Collections precisam
+ser objetos
+● Não podemos ter Vector<int> por exemplo
+35
+Adicionar uma conta
+● Agora precisamos ter uma chave e uma conta
+private void add(ContaBancaria cb) {
+contas.put(cb.getNumConta(), cb);
+}
+36
+Adicionar uma conta
+● Agora precisamos ter uma chave e uma conta
+private void add(ContaBancaria cb) {
+contas.put(cb.getNumConta(), cb);
+}
+Chave
+Valor
+37
+Mostrar saldos
+● Requer percorrer todos os elementos
+private void printSaldos() {
+for (ContaBancaria ctb : contas.values()) {
+   System.out.println("Numero da conta:" +
+                                 ctb.getNumConta());
+System.out.println("Titular: " +
+                                 ctb.getNomeCliente());
+System.out.println("Saldo: " + ctb.getSaldo());
+System.out.println();
+}
+}
+38
+Mostrar saldos
+● Requer percorrer todos os elementos
+private void printSaldos() {
+for (ContaBancaria ctb : contas.values()) {
+   System.out.println("Numero da conta:" + 
+ctb.getNumConta());
+System.out.println("Titular: " + 
+ctb.getNomeCliente());
+System.out.println("Saldo: " + ctb.getSaldo());
+System.out.println();
+}
+}
+Retorna uma Collection que
+portanto possui um Iterator
+39
+Atualizar poupanças
+● Percorrer usando Iterator
+private void atualizaPoupança(double tx) {
+Iterator<ContaBancaria> it = contas.values().iterator();
+while  (it.hasNext())
+{
+ContaBancaria ctb = it.next();
+ctb.atualiza(tx);
+}
+}
+40
+Atualizar poupanças
+● Percorrer usando Iterator
+private void atualizaPoupança(double tx) {
+Iterator<ContaBancaria> it = contas.values().iterator();
+while  (it.hasNext())
+{
+ContaBancaria ctb = it.next();
+ctb.atualiza(tx);
+}
+}
+41
+Procurar uma conta
+● Na verdade não precisa procurar uma conta
+pelo número
+● O “vetor” de contas é indexado pelo número
+private ContaBancaria procura(int conta) {
+return contas.get(conta);
+}
+42
+Procurar uma conta
+● Na verdade não precisa procurar uma conta
+pelo número
+● O “vetor” de contas é indexado pelo número
+private ContaBancaria procura(int conta) {
+return contas.get(conta);
+} Retorna null se a conta não existe
+43
+Exercício
+● Crie uma classe ContaPalavra que tem:
+– um construtor que recebe o nome de um arquivo
+texto
+– um método criaMapa que cria uma mapa em que
+as chaves são as palavras do texto e os valores o
+número de ocorrências
+– um método mostraMapa que vai mostrar o número
+de ocorrências de cada palavra, em ordem
+alfabética
+44
+Aproveitando
+● É possível salvar objetos em um arquivo para
+recuperá-los mais tarde
+● Por exemplo, se quisermos salvar a lista de
+contas
+● Um objeto ObjectOutputStream permite que
+gravemos objetos inteiros
+● Um objeto ObjectInputStream permite que
+recuperemos objetos inteiros
+45
+Gravando objetos
+FileOutputStream fos = new FileOutputStream("abc");
+ObjectOutputStream oos = new ObjectOutputStream(fos);
+oos.writeObject("Meu string");
+oos.close();
+46
+Lendo objetos
+FileOutputStream fos = new FileOutputStream("abc");
+ObjectOutputStream oos = new ObjectOutputStream(fos);
+oos.writeObject("Meu string");
+oos.close();
+FileInputStream fis = new FileInputStream("abc");     
+ObjectInputStream ois = new ObjectInputStream(fis);
+String s = (String) ois.readObject();
+ois.close();
+47
+Voltando ao banco
+● No início do programa vamos tentar recuperar
+as contas da execução passada
+● Vamos tentar ler objeto Contas do arquivo
+“contas.dat”
+● No final da execução vamos salvar o objeto
+Contas no arquivo “contas.dat”
+48
+Salvando
+FileOutputStream fos = 
+         new FileOutputStream("contas.dat");
+ObjectOutputStream oos = 
+         new ObjectOutputStream(fos);
+oos.writeObject(ct);
+oos.close();
+49
+Salvando
+FileOutputStream fos = 
+         new FileOutputStream("contas.dat");
+ObjectOutputStream oos = 
+         new ObjectOutputStream(fos);
+oos.writeObject(ct);
+oos.close();
+Exception in thread "main" java.io.NotSerializableException: Contas
+at java.io.ObjectOutputStream.writeObject0(ObjectOutputStream.java:1184)
+at java.io.ObjectOutputStream.writeObject(ObjectOutputStream.java:348)
+at Contas.main(Contas.java:110)
+50
+Serializable
+● Para poder gravar o objeto ele precisa ser
+serializável
+● Implementar interface Serializable
+● public class Contas implements Serializable 
+51
+Salvando
+FileOutputStream fos = 
+         new FileOutputStream("contas.dat");
+ObjectOutputStream oos = 
+         new ObjectOutputStream(fos);
+oos.writeObject(ct);
+oos.close();
+Exception in thread "main" java.io.NotSerializableException: PoupancaOuro
+at java.io.ObjectOutputStream.writeObject0(ObjectOutputStream.java:1184)
+at java.io.ObjectOutputStream.writeObject(ObjectOutputStream.java:348)
+at java.util.HashMap.internalWriteEntries(HashMap.java:1777)
+at java.util.HashMap.writeObject(HashMap.java:1354)
+at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+52
+Serialização
+● Todos os objetos “dentro” de Contas precisam ser
+serializáveis
+● Temos um array de contas bancárias
+● Todas as contas bancas devem ser serializáveis
+● public abstract class ContaBancaria implements Serializable 
+● Isso faz com que todas as subclasses sejam
+serializáveis
+● Essa interface não tem métodos
+53
+Recuperando
+try {
+FileInputStream fis = new FileInputStream("contas.dat");
+ObjectInputStream ois = new ObjectInputStream(fis);
+ct = (Contas) ois.readObject();
+ois.close();
+}
+catch (Exception e){
+ct = new Contas();
+}
+54
+Exercício
+● Implemente o sistema de contas bancárias
+usando um HashMap
+● Implemente a funcionalidade de remoção de
+uma conta
+● Implemente a serialização das contas, de
+forma que no início da execução do programa,
+seja lido o cadastro de contas, e no final, seja
+gravado o cadastro atualizado.

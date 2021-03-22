@@ -1,0 +1,35 @@
+
+public abstract class ContaPoupancaSimples extends ContaPoupanca {
+	
+	public ContaPoupancaSimples(String nome, float saldo, int diaRendimento, float taxaRendimento) {
+		
+		super(nome, saldo, diaRendimento, taxaRendimento);
+		
+	}
+	
+	@ Override
+	public void atualiza(int dia) {
+		
+		if(dia == diaRendimento) {
+			
+			saldo *= (1 + taxaRendimento);
+			
+		}
+		
+	}
+	
+	@Override
+	public float saque(float valor) throws IllegalArgumentException {
+		
+		if(saldo >= valor) {
+			saldo -= valor;
+			return valor;
+		} else {
+			
+			throw new IllegalArgumentException("Saldo Insuficiente");
+			
+		}
+		
+	}
+
+}

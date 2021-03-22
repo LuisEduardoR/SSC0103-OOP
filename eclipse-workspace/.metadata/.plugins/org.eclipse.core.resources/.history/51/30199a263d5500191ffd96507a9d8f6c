@@ -1,0 +1,38 @@
+
+public class ContaPoupanca extends ContaBancaria {
+	
+	protected int diaRendimento;
+	protected float taxaRendimento;
+	
+	public ContaPoupanca(String nome, float saldo, int diaRendimento, float taxaRendimento) {
+		
+		super(nome, saldo);
+		this.diaRendimento = diaRendimento;
+		this.taxaRendimento = taxaRendimento;
+		
+	}
+	
+	public int getDiaRendimento() {
+		return diaRendimento;
+	}
+	public void setDiaRendimento(int diaRendimento) {
+		this.diaRendimento = diaRendimento;
+	}
+	public float getTaxaRendimento() {
+		return taxaRendimento;
+	}
+	public void setTaxaRendimento(float taxaRendimento) {
+		this.taxaRendimento = taxaRendimento;
+	}
+	
+	public void atualiza(int dia) {
+		
+		if(dia == diaRendimento) {
+			
+			saldo *= (1 + taxaRendimento);
+			
+		}
+		
+	}
+
+}
